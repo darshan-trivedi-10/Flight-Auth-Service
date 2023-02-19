@@ -5,7 +5,6 @@ const {
 
 const {SALT} = require('../config/serverConfig');
 const bcrypt = require('bcrypt');
-const { use } = require('../router');
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {

@@ -50,10 +50,6 @@ class UserRepository {
         }
     }
 
-    async isAdmin(userId) {
-        // to-do
-    }
-
 }
 
 module.exports = UserRepository;
