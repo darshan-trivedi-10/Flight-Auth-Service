@@ -23,6 +23,7 @@ class UserService {
         try {
             const user = await this.userRepository.getByEmail(email);
             const passwordMatch = this.checkPassword(plainPassword, user.password);
+            console.log(passwordMatch);
             if (!passwordMatch) {
                 console.log("Passwor doesn't match");
                 throw { error: 'Incorrect password' };
