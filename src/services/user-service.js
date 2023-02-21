@@ -14,6 +14,9 @@ class UserService {
             const user = await this.userRepository.create(data);
             return user;
         } catch (error) {
+            if (error.name == 'SequelizeValidationError') {
+                throw new ValidationError(error);
+            }
             console.log("Something went wrong in the service layer");
             throw { error };
         }
@@ -80,6 +83,15 @@ class UserService {
             return bcrypt.compareSync(userInputPassword, encryptedPassword);
         } catch (error) {
             console.log("Something went wrong in password comparison");
+            throw { error };
+        }
+    }
+
+    isAdmin(userId) {
+        try {
+            return this.userRepository.isAdmin(userId);
+        } catch (error) {
+            console.log("Something went wrong in service layer");
             throw { error };
         }
     }
